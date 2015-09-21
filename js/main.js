@@ -147,7 +147,7 @@ mc.on('pinchmove', function(ev) {
 mc.on('pinchend', function(ev) {
   console.log('pinchend');
   var view = emap.getView();
-  console.log('zoom; '+ emap.getNearestZoom());
+  console.log('nearest zoom: '+ emap.getNearestZoom());
   view.zoom = emap.getNearestZoom();
   emap.setView({
     view: view,
@@ -189,25 +189,33 @@ mc.on('rotatemove', function (ev) {
 $('#zoomin').on('click', function() {
   emap.applyDeltaScaleRotation({
     factor: 2,
-    callback: handleMapState
+    callback: function(err, state) {
+      handleMapState(err,state,true);
+    }
   });
 });
 $('#zoomout').on('click', function() {
   emap.applyDeltaScaleRotation({
     factor: 0.5,
-    callback: handleMapState
+    callback: function(err, state) {
+      handleMapState(err,state,true);
+    }
   });
 });
 $('#clockwise').on('click', function() {
   emap.applyDeltaScaleRotation({
     rotation: 15,
-    callback: handleMapState
+    callback: function(err, state) {
+      handleMapState(err,state,true);
+    }
   });
 });
 $('#anticlockwise').on('click', function() {
   emap.applyDeltaScaleRotation({
     rotation: -15,
-    callback: handleMapState
+    callback: function(err, state) {
+      handleMapState(err,state,true);
+    }
   });
 });
 
@@ -253,14 +261,18 @@ function drawGeoJSON(respGeojson,respPopulation) {
 }
 function loadTiles(view,tileMatrix,layerId) {
   var cont = document.querySelector('.rt-nonscalable-stack');
+  cont.style.transform = 'matrix('+ tileMatrix.join(',') + ')';
+	var tiles = tiler.getTiles(
+    {x:view.center[0], y: view.center[1]},
+    view.zoom,
+    view.rotation
+  );
   var layer = document.querySelector('#'+layerId);
   layer.innerHTML = "";
-  cont.style.transform = 'matrix('+ tileMatrix.join(',') + ')';
-	var tiles = tiler.getTiles({x:view.center[0], y: view.center[1]}, view.zoom,view.rotation);
 	tiles.forEach(function(t) {
 	  var img = document.createElement('img');
     var baseURL = 'http://tile.openstreetmap.org';
-	  img.src = baseURL + '/'+ t.z + '/' + t.x + '/' + t.y + '.png';
+	  img.src = baseURL + '/'+ t.z.toFixed() + '/' + t.x.toFixed() + '/' + t.y.toFixed() + '.png';
 	  img.setAttribute('style', 
     //'left:'+ (t.left - cont.offsetLeft)  
     //+ 'px;top:' + (t.top - cont.offsetTop) +'px;'

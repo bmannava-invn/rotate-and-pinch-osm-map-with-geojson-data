@@ -1,5 +1,5 @@
 {
-  "name": "can-you-rotate-and-pinch-the-svg-map",
+  "name": "rotate-and-pinch-osm-map-with-geojson-data",
   "version": "0.0.0",
   "description": "This repository is part of my blog[ maps-on-blackboard](http://maps-on-blackboard.com)",
   "main": "js/main.js",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/maps-on-blackboard/can-you-rotate-and-pinch-the-svg-map.git"
+    "url": "https://github.com/maps-on-blackboard/rotate-and-pinch-osm-map-with-geojson-data.git"
   },
   "keywords": [
     "geojson",
@@ -25,9 +25,9 @@
   "author": "Gagan Bansal <gaganbansal123@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maps-on-blackboard/can-you-rotate-and-pinch-the-svg-map/issues"
+    "url": "https://github.com/maps-on-blackboard/rotate-and-pinch-osm-map-with-geojson-data/issues"
   },
-  "homepage": "https://github.com/maps-on-blackboard/can-you-rotate-and-pinch-the-svg-map",
+  "homepage": "https://github.com/maps-on-blackboard/rotate-and-pinch-osm-map-with-geojson-data",
   "dependencies": {
     "emptymap.js": "0.0.0",
     "extend-geojson-properties": "^0.1.2",

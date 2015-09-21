@@ -28,6 +28,7 @@
 
 .rt-tile-stack img {
   position: absolute;
+  width: auto !important;
 }
 
 .rt-svg-stack {
@@ -100,6 +101,7 @@ padding-right: 20px;
 }
 .icon img {
   margin: 5px;
+  width: auto !important;
 }
 
 .credit {
